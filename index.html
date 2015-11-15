@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weekend Frontend Fun</title>
+	<script type="text/javascript" src="./paper-full.min.js"></script>
+		<script type = "text/paperscript" canvas="canvas">
+var ship = Path.Rectangle( new Point(200,200), new Size(100,50));
+ship.style = {
+	fillColor: 'grey',
+	strokeColor: 'black'
+};
+
+		function onFrame(event){
+			if(Key.isDown('d')){
+				ship.translate(5,0);
+			}
+			if(Key.isDown('w')){
+				ship.translate(0,-5);
+			}
+			if(Key.isDown('a')){
+				ship.translate(-5,0);
+			}
+			if(Key.isDown('s')){
+				ship.translate(0,5);
+			}
+			if(Key.isDown('right')){
+				ship.rotate(5);
+			}
+			if(Key.isDown('left')){
+				ship.rotate(-5);
+			}
+			if(Key.isDown('down')){
+				ship.scale(1.1);
+			}
+			if(Key.isDown('up')){
+				ship.scale(0.9);
+			}
+		}
+		</script>
+</head>
+<canvas style="position:absolute" id="canvas" resize stats></canvas>
+<body>
+
+</body>
+</html>
