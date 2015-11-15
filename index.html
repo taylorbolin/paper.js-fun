@@ -4,35 +4,37 @@
 	<title>Weekend Frontend Fun</title>
 	<script type="text/javascript" src="./paper-full.min.js"></script>
 		<script type = "text/paperscript" canvas="canvas">
-var ship = Path.Rectangle( new Point(200,200), new Size(100,50));
+var ship = Path.Rectangle( new Point(200,200), new Size(100,100));
 ship.style = {
-	fillColor: 'grey',
-	strokeColor: 'black'
+	fillColor: 'red'
+	// strokeColor: 'black'
 };
 
 		function onFrame(event){
-			if(Key.isDown('d')){
+			ship.rotate(0.5);
+			ship.fillColor.hue += 0.5;
+			if(Key.isDown('right')){
 				ship.translate(5,0);
 			}
-			if(Key.isDown('w')){
+			if(Key.isDown('up')){
 				ship.translate(0,-5);
 			}
-			if(Key.isDown('a')){
+			if(Key.isDown('left')){
 				ship.translate(-5,0);
 			}
-			if(Key.isDown('s')){
+			if(Key.isDown('down')){
 				ship.translate(0,5);
 			}
-			if(Key.isDown('right')){
-				ship.rotate(5);
-			}
-			if(Key.isDown('left')){
-				ship.rotate(-5);
-			}
-			if(Key.isDown('down')){
+			// if(Key.isDown('right')){
+			// 	ship.rotate(5);
+			// }
+			// if(Key.isDown('left')){
+			// 	ship.rotate(-5);
+			// }
+			if(Key.isDown('z')){
 				ship.scale(1.1);
 			}
-			if(Key.isDown('up')){
+			if(Key.isDown('x')){
 				ship.scale(0.9);
 			}
 		}
