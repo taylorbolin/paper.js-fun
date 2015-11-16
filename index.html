@@ -1,47 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="styles.css">
 	<title>Weekend Frontend Fun</title>
 	<script type="text/javascript" src="./paper-full.min.js"></script>
 		<script type = "text/paperscript" canvas="canvas">
-var ship = Path.Rectangle( new Point(200,200), new Size(100,100));
-ship.style = {
-	fillColor: 'red'
-	// strokeColor: 'black'
+var dizzy = Path.Rectangle( 
+	new Point(300, 300), 
+	new Size(75, 75));
+dizzy.style = {
+	fillColor: 'red',
+	strokeColor: 'red'
 };
 
 		function onFrame(event){
-			ship.rotate(0.5);
-			ship.fillColor.hue += 0.5;
+			// dizzy.strokeColor.hue += 0.5;
 			if(Key.isDown('right')){
-				ship.translate(5,0);
+				dizzy.translate(5,0);
+				dizzy.rotate(2);
+				dizzy.fillColor.hue += 4;
+				dizzy.strokeColor.hue += 0.5;
 			}
 			if(Key.isDown('up')){
-				ship.translate(0,-5);
+				dizzy.translate(0,-5);
+				dizzy.fillColor.hue += 4;
+				dizzy.strokeColor.hue += 0.5;
 			}
 			if(Key.isDown('left')){
-				ship.translate(-5,0);
+				dizzy.translate(-5,0);
+				dizzy.rotate(-2);
+				dizzy.fillColor.hue += 4;
+				dizzy.strokeColor.hue += 0.5;
 			}
 			if(Key.isDown('down')){
-				ship.translate(0,5);
+				dizzy.translate(0,5);
+				dizzy.fillColor.hue += 4;
+				dizzy.strokeColor.hue += 0.5;
 			}
-			// if(Key.isDown('right')){
-			// 	ship.rotate(5);
-			// }
-			// if(Key.isDown('left')){
-			// 	ship.rotate(-5);
-			// }
 			if(Key.isDown('z')){
-				ship.scale(1.1);
+				dizzy.scale(1.05);
+				dizzy.rotate(60);
+				dizzy.fillColor.hue += 60;
+				dizzy.strokeColor.hue += 60;
 			}
 			if(Key.isDown('x')){
-				ship.scale(0.9);
+				dizzy.scale(0.95);
+				dizzy.rotate(60);
+				dizzy.fillColor.hue += 60;
+				dizzy.strokeColor.hue += 60;
 			}
 		}
 		</script>
 </head>
-<canvas style="position:absolute" id="canvas" resize stats></canvas>
+<canvas id="canvas" resize="true"></canvas>
 <body>
-
 </body>
 </html>
