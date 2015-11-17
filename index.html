@@ -5,51 +5,154 @@
 	<title>Weekend Frontend Fun</title>
 	<script type="text/javascript" src="./paper-full.min.js"></script>
 		<script type = "text/paperscript" canvas="canvas">
+
+tool.minDistance = 1;
+tool.maxDistance = 100;
+
+var path;
+
+function onMouseDown(event) {
+	path = new Path();
+	path.fillColor = {
+		hue: Math.random() * 500,
+		saturation: 1,
+		brightness: 1,
+	};
+	path.opacity = 0.5;
+
+	path.add(event.point);
+}
+
+function onMouseDrag(event) {
+	var step = event.delta;
+	step.angle += 90;
+	
+	var top = event.middlePoint + step;
+	var bottom = event.middlePoint - step;
+	
+	path.add(top);
+	path.insert(0, bottom);
+	path.smooth();
+}
+
+function onMouseUp(event) {
+	path.add(event.point);
+	path.closed = true;
+	path.smooth();
+}
+
 var dizzy = Path.Rectangle( 
 	new Point(300, 300), 
 	new Size(75, 75));
 dizzy.style = {
 	fillColor: 'red',
-	strokeColor: 'red'
+	strokeColor: 'red',
+	strokeWidth: 3
 };
 
+var copy = dizzy.clone();
+copy.strokeColor = 'blue';
+copy.fillColor = 'blue';
+copy.position = new Point(500,500);
+
 		function onFrame(event){
-			// dizzy.strokeColor.hue += 0.5;
+		dizzy.strokeColor.hue += 5;
+		copy.strokeColor.hue += 5;
 			if(Key.isDown('right')){
 				dizzy.translate(5,0);
 				dizzy.rotate(2);
 				dizzy.fillColor.hue += 4;
-				dizzy.strokeColor.hue += 0.5;
+				dizzy.strokeColor.hue += 10;
+				copy.translate(5,0);
+				copy.rotate(2);
+				copy.fillColor.hue += 4;
+				// copy.strokeColor.hue += 0.5;
 			}
 			if(Key.isDown('up')){
 				dizzy.translate(0,-5);
+				dizzy.rotate(-0.5);
 				dizzy.fillColor.hue += 4;
-				dizzy.strokeColor.hue += 0.5;
+				dizzy.strokeColor.hue += 10;
+				copy.translate(0,-5);
+				copy.rotate(-0.5);
+				copy.fillColor.hue += 4;
+				// copy.strokeColor.hue += 0.5;
 			}
 			if(Key.isDown('left')){
 				dizzy.translate(-5,0);
 				dizzy.rotate(-2);
 				dizzy.fillColor.hue += 4;
-				dizzy.strokeColor.hue += 0.5;
+				dizzy.strokeColor.hue += 10;
+				copy.translate(-5,0);
+				copy.rotate(-2);
+				copy.fillColor.hue += 4;
+				// copy.strokeColor.hue += 0.5;
 			}
 			if(Key.isDown('down')){
 				dizzy.translate(0,5);
+				dizzy.rotate(0.5);
 				dizzy.fillColor.hue += 4;
-				dizzy.strokeColor.hue += 0.5;
+				dizzy.strokeColor.hue += 10;
+				copy.translate(0,5);
+				copy.rotate(0.5);
+				copy.fillColor.hue += 4;
+				// copy.strokeColor.hue += 0.5;
 			}
 			if(Key.isDown('z')){
 				dizzy.scale(1.05);
 				dizzy.rotate(60);
 				dizzy.fillColor.hue += 60;
 				dizzy.strokeColor.hue += 60;
+				copy.scale(1.05);
+				copy.rotate(60);
+				copy.fillColor.hue += 60;
+				// copy.strokeColor.hue += 60;
 			}
 			if(Key.isDown('x')){
 				dizzy.scale(0.95);
 				dizzy.rotate(60);
 				dizzy.fillColor.hue += 60;
 				dizzy.strokeColor.hue += 60;
+				copy.scale(0.95);
+				copy.rotate(60);
+				copy.fillColor.hue += 60;
+				// copy.strokeColor.hue += 60;
 			}
 		}
+// tool.minDistance = 1;
+// tool.maxDistance = 100;
+
+// var path;
+
+// function onMouseDown(event) {
+// 	path = new Path();
+// 	path.fillColor = {
+// 		hue: Math.random() * 500,
+// 		saturation: 1,
+// 		brightness: 1,
+// 	};
+// 	path.opacity = 0.5;
+
+// 	path.add(event.point);
+// }
+
+// function onMouseDrag(event) {
+// 	var step = event.delta;
+// 	step.angle += 90;
+	
+// 	var top = event.middlePoint + step;
+// 	var bottom = event.middlePoint - step;
+	
+// 	path.add(top);
+// 	path.insert(0, bottom);
+// 	path.smooth();
+// }
+
+// function onMouseUp(event) {
+// 	path.add(event.point);
+// 	path.closed = true;
+// 	path.smooth();
+// }
 		</script>
 </head>
 <canvas id="canvas" resize="true"></canvas>
